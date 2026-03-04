@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ParkCloud CV — Мониторинг парковки</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🅿️ ParkCloud CV Module</h1>
+            <div class="header-stats">
+                <div class="stat">
+                    <span class="stat-label">Всего мест</span>
+                    <span class="stat-value" id="total-spaces">—</span>
+                </div>
+                <div class="stat stat-occupied">
+                    <span class="stat-label">Занято</span>
+                    <span class="stat-value" id="occupied-spaces">—</span>
+                </div>
+                <div class="stat stat-free">
+                    <span class="stat-label">Свободно</span>
+                    <span class="stat-value" id="free-spaces">—</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Загрузка</span>
+                    <span class="stat-value" id="occupancy-rate">—</span>
+                </div>
+                <div class="stat stat-connection">
+                    <span class="stat-label">Статус</span>
+                    <span class="stat-value" id="connection-status">⏳ Подключение…</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="layout">
+            <!-- Карта парковки -->
+            <section class="map-section">
+                <h2>Карта парковки</h2>
+                <div class="map-container">
+                    <svg id="parking-map" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid meet">
+                        <!-- Фон -->
+                        <rect width="600" height="300" fill="#2c3e50" rx="8"/>
+
+                        <!-- Проезд -->
+                        <rect x="0" y="95" width="600" height="60" fill="#34495e" opacity="0.5"/>
+                        <line x1="0" y1="125" x2="600" y2="125" stroke="#f39c12" stroke-width="2" stroke-dasharray="20,10"/>
+
+                        <!-- Разметка -->
+                        <text x="300" y="130" text-anchor="middle" fill="#7f8c8d" font-size="12" font-family="monospace">← Проезд →</text>
+
+                        <!-- Парковочные места отрисовываются скриптом -->
+                        <g id="spaces-layer"></g>
+
+                        <!-- Иконки камер -->
+                        <g id="cameras-layer"></g>
+                    </svg>
+                </div>
+                <div class="map-legend">
+                    <span class="legend-item"><span class="dot dot-free"></span> Свободно</span>
+                    <span class="legend-item"><span class="dot dot-uncertain"></span> Неопределённо</span>
+                    <span class="legend-item"><span class="dot dot-occupied"></span> Занято</span>
+                </div>
+            </section>
+
+            <!-- Боковая панель -->
+            <aside class="side-panel">
+                <!-- Список мест -->
+                <section class="spaces-section">
+                    <h2>Парковочные места</h2>
+                    <div class="spaces-filter">
+                        <button class="filter-btn active" data-filter="all">Все</button>
+                        <button class="filter-btn" data-filter="free">Свободные</button>
+                        <button class="filter-btn" data-filter="occupied">Занятые</button>
+                    </div>
+                    <div id="spaces-list" class="spaces-list"></div>
+                </section>
+
+                <!-- Журнал событий -->
+                <section class="events-section">
+                    <h2>Поток событий</h2>
+                    <div id="events-log" class="events-log"></div>
+                </section>
+
+                <!-- Конфигурация -->
+                <section class="config-section">
+                    <h2>Конфигурация</h2>
+                    <div class="config-item">
+                        <label>Стратегия слияния камер:</label>
+                        <select id="fusion-strategy">
+                            <option value="weighted_average">Взвешенное среднее</option>
+                            <option value="max_confidence">Макс. уверенность</option>
+                            <option value="max_occupancy">Макс. занятость</option>
+                            <option value="vote">Голосование</option>
+                        </select>
+                    </div>
+                    <div class="config-item">
+                        <label>Камеры:</label>
+                        <span id="cameras-count">—</span>
+                    </div>
+                </section>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <p>ParkCloud CV Module v0.1.0 — СТАМП / ParkCloud Platform</p>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

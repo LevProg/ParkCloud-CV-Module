@@ -1,0 +1,29 @@
+# Виртуальное окружение
+venv/
+.venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+dist/
+build/
+
+# Модели YOLO (тяжёлые файлы)
+*.pt
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.idea/
+.vscode/
+
+# Переменные окружения
+.env
+.env.local

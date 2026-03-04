@@ -1,0 +1,404 @@
+/* ========================================
+   ParkCloud CV Module — Styles
+   ======================================== */
+
+:root {
+    --color-bg: #1a1a2e;
+    --color-surface: #16213e;
+    --color-surface-2: #0f3460;
+    --color-primary: #e94560;
+    --color-accent: #533483;
+    --color-text: #eee;
+    --color-text-muted: #8892b0;
+    --color-free: #00b894;
+    --color-occupied: #e17055;
+    --color-uncertain: #fdcb6e;
+    --color-border: #2d3748;
+    --radius: 8px;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---- Header ---- */
+header {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: 16px 24px;
+    box-shadow: var(--shadow);
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+header h1 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.header-stats {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-muted);
+    margin-bottom: 2px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.stat-occupied .stat-value { color: var(--color-occupied); }
+.stat-free .stat-value { color: var(--color-free); }
+.stat-connection .stat-value { font-size: 0.85rem; }
+
+/* ---- Main layout ---- */
+main {
+    flex: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    width: 100%;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 20px;
+    height: calc(100vh - 160px);
+}
+
+@media (max-width: 1000px) {
+    .layout {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+}
+
+/* ---- Map section ---- */
+.map-section {
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.map-section h2 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.map-container {
+    flex: 1;
+    background: #1e2d3d;
+    border-radius: var(--radius);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+}
+
+#parking-map {
+    width: 100%;
+    height: 100%;
+    max-height: 500px;
+}
+
+.map-legend {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.dot-free { background: var(--color-free); }
+.dot-occupied { background: var(--color-occupied); }
+.dot-uncertain { background: var(--color-uncertain); }
+
+/* ---- Side panel ---- */
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
+}
+
+.side-panel section {
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+}
+
+.side-panel h2 {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+/* Filters */
+.spaces-filter {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.filter-btn {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 0.78rem;
+    background: var(--color-surface-2);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-text);
+}
+
+.filter-btn.active {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+
+/* Spaces list */
+.spaces-list {
+    max-height: 280px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.space-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: var(--color-surface-2);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+    cursor: default;
+    border-left: 3px solid transparent;
+}
+
+.space-item:hover {
+    background: #1a3a5c;
+}
+
+.space-item.occupied {
+    border-left-color: var(--color-occupied);
+}
+
+.space-item.free {
+    border-left-color: var(--color-free);
+}
+
+.space-item.uncertain {
+    border-left-color: var(--color-uncertain);
+}
+
+.space-id {
+    font-weight: 600;
+    font-family: monospace;
+    font-size: 0.9rem;
+}
+
+.space-occupancy {
+    font-variant-numeric: tabular-nums;
+}
+
+.space-bar {
+    width: 60px;
+    height: 6px;
+    background: #2d3748;
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 0 10px;
+    flex-shrink: 0;
+}
+
+.space-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.5s ease, background 0.3s;
+}
+
+/* Events log */
+.events-log {
+    max-height: 200px;
+    overflow-y: auto;
+    font-size: 0.78rem;
+    font-family: 'Consolas', 'Fira Code', monospace;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.event-item {
+    padding: 4px 8px;
+    background: var(--color-surface-2);
+    border-radius: 3px;
+    display: flex;
+    gap: 8px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.event-time {
+    color: var(--color-text-muted);
+    white-space: nowrap;
+}
+
+.event-type {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.event-type.occupied { color: var(--color-occupied); }
+.event-type.freed { color: var(--color-free); }
+
+.event-detail {
+    color: var(--color-text);
+}
+
+/* Config */
+.config-section {
+    font-size: 0.85rem;
+}
+
+.config-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.config-item:last-child {
+    border-bottom: none;
+}
+
+.config-item label {
+    color: var(--color-text-muted);
+}
+
+.config-item select {
+    background: var(--color-surface-2);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+}
+
+/* ---- Footer ---- */
+footer {
+    text-align: center;
+    padding: 12px 24px;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    border-top: 1px solid var(--color-border);
+}
+
+/* ---- SVG parking space styles ---- */
+.parking-space {
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.parking-space:hover {
+    opacity: 0.8;
+}
+
+.parking-space text {
+    pointer-events: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4a5568;
+}

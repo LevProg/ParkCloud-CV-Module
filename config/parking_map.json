@@ -1,0 +1,72 @@
+{
+  "version": "1.0",
+  "object_name": "Demo Parking Lot",
+  "description": "Демонстрационная плоская парковка на 20 мест с 2 камерами",
+  "coordinate_system": {
+    "unit": "meters",
+    "origin": "top-left corner of the lot",
+    "x_axis": "east",
+    "y_axis": "south"
+  },
+  "bounds": {
+    "width": 60.0,
+    "height": 30.0
+  },
+  "parking_spaces": [
+    {"id": "A01", "polygon": [[2.0, 2.0], [5.0, 2.0], [5.0, 7.0], [2.0, 7.0]], "type": "standard"},
+    {"id": "A02", "polygon": [[6.0, 2.0], [9.0, 2.0], [9.0, 7.0], [6.0, 7.0]], "type": "standard"},
+    {"id": "A03", "polygon": [[10.0, 2.0], [13.0, 2.0], [13.0, 7.0], [10.0, 7.0]], "type": "standard"},
+    {"id": "A04", "polygon": [[14.0, 2.0], [17.0, 2.0], [17.0, 7.0], [14.0, 7.0]], "type": "standard"},
+    {"id": "A05", "polygon": [[18.0, 2.0], [21.0, 2.0], [21.0, 7.0], [18.0, 7.0]], "type": "standard"},
+    {"id": "A06", "polygon": [[22.0, 2.0], [25.0, 2.0], [25.0, 7.0], [22.0, 7.0]], "type": "standard"},
+    {"id": "A07", "polygon": [[26.0, 2.0], [29.0, 2.0], [29.0, 7.0], [26.0, 7.0]], "type": "standard"},
+    {"id": "A08", "polygon": [[30.0, 2.0], [33.0, 2.0], [33.0, 7.0], [30.0, 7.0]], "type": "standard"},
+    {"id": "A09", "polygon": [[34.0, 2.0], [37.0, 2.0], [37.0, 7.0], [34.0, 7.0]], "type": "standard"},
+    {"id": "A10", "polygon": [[38.0, 2.0], [41.0, 2.0], [41.0, 7.0], [38.0, 7.0]], "type": "standard"},
+    {"id": "B01", "polygon": [[2.0, 18.0], [5.0, 18.0], [5.0, 23.0], [2.0, 23.0]], "type": "standard"},
+    {"id": "B02", "polygon": [[6.0, 18.0], [9.0, 18.0], [9.0, 23.0], [6.0, 23.0]], "type": "standard"},
+    {"id": "B03", "polygon": [[10.0, 18.0], [13.0, 18.0], [13.0, 23.0], [10.0, 23.0]], "type": "standard"},
+    {"id": "B04", "polygon": [[14.0, 18.0], [17.0, 18.0], [17.0, 23.0], [14.0, 23.0]], "type": "standard"},
+    {"id": "B05", "polygon": [[18.0, 18.0], [21.0, 18.0], [21.0, 23.0], [18.0, 23.0]], "type": "standard"},
+    {"id": "B06", "polygon": [[22.0, 18.0], [25.0, 18.0], [25.0, 23.0], [22.0, 23.0]], "type": "standard"},
+    {"id": "B07", "polygon": [[26.0, 18.0], [29.0, 18.0], [29.0, 23.0], [26.0, 23.0]], "type": "standard"},
+    {"id": "B08", "polygon": [[30.0, 18.0], [33.0, 18.0], [33.0, 23.0], [30.0, 23.0]], "type": "standard"},
+    {"id": "B09", "polygon": [[34.0, 18.0], [37.0, 18.0], [37.0, 23.0], [34.0, 23.0]], "type": "standard"},
+    {"id": "B10", "polygon": [[38.0, 18.0], [41.0, 18.0], [41.0, 23.0], [38.0, 23.0]], "type": "standard"}
+  ],
+  "cameras": [
+    {
+      "id": "cam_01",
+      "name": "Camera North-West",
+      "description": "Covers row A (spaces A01-A10) and partial row B",
+      "resolution": [1920, 1080],
+      "calibration_points": [
+        {"map": [2.0, 2.0], "image": [150, 200]},
+        {"map": [41.0, 2.0], "image": [1750, 180]},
+        {"map": [41.0, 23.0], "image": [1600, 900]},
+        {"map": [2.0, 23.0], "image": [300, 920]}
+      ],
+      "work_zone": [[100, 150], [1800, 150], [1800, 950], [100, 950]],
+      "covered_spaces": ["A01", "A02", "A03", "A04", "A05", "A06", "A07", "A08", "A09", "A10",
+                          "B01", "B02", "B03", "B04", "B05"]
+    },
+    {
+      "id": "cam_02",
+      "name": "Camera South-East",
+      "description": "Covers row B (spaces B01-B10) and partial row A",
+      "resolution": [1920, 1080],
+      "calibration_points": [
+        {"map": [2.0, 2.0], "image": [320, 160]},
+        {"map": [41.0, 2.0], "image": [1620, 180]},
+        {"map": [41.0, 23.0], "image": [1780, 880]},
+        {"map": [2.0, 23.0], "image": [170, 860]}
+      ],
+      "work_zone": [[120, 120], [1820, 120], [1820, 920], [120, 920]],
+      "covered_spaces": ["A06", "A07", "A08", "A09", "A10",
+                          "B01", "B02", "B03", "B04", "B05", "B06", "B07", "B08", "B09", "B10"]
+    }
+  ],
+  "lanes": [
+    {"id": "lane_main", "polyline": [[0.0, 12.5], [60.0, 12.5]], "width": 6.0, "description": "Main driving lane"}
+  ]
+}
